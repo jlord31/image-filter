@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles, isValidUrl} from './util/util';
 
@@ -50,10 +50,10 @@ import {filterImageFromURL, deleteLocalFiles, isValidUrl} from './util/util';
   } );
   
   // End point for image filtering
-  app.get("/filteredimage",async (req, res) => {
+  app.get("/filteredimage",async (req: Request, res: Response) => {
 
     try {
-      const parameters = req.query.image_url;
+      const parameters:string = req.query.image_url;
 
       if(!parameters){
         res.send({error: "Please include image_url and the url to the image in the query parameters"});
@@ -63,7 +63,7 @@ import {filterImageFromURL, deleteLocalFiles, isValidUrl} from './util/util';
         res.send({error: "Invalid image URL"});
       }
       else{
-        const filteredpath = await filterImageFromURL(parameters);
+        const filteredpath:string = await filterImageFromURL(parameters);
       
         res.sendFile(filteredpath);
         res.on('finish', () => deleteLocalFiles([filteredpath]));
