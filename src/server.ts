@@ -51,7 +51,8 @@ import {filterImageFromURL, deleteLocalFiles, isValidUrl} from './util/util';
   
   // End point for image filtering
   app.get("/filteredimage",async (req: Request, res: Response) => {
-
+    
+    // try block
     try {
       const parameters:string = req.query.image_url;
 
@@ -70,7 +71,9 @@ import {filterImageFromURL, deleteLocalFiles, isValidUrl} from './util/util';
       }
       
       
-    } catch (error) {
+    } 
+    // catch block
+    catch (error) {
       res.status(500).send({error: 'Unable to process your request'});
     }
     
