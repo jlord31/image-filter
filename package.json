@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "dv":"ind.js",
   "engines": {
     "npm": ">=6.10.0",
     "node": ">=12.7.0"
